@@ -1,0 +1,667 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Materi-Data-Mining">
+      
+      
+        <link rel="canonical" href="https://ismihidayati.github.io/170441100014-Materi-Datamining/getting-started/">
+      
+      
+        <meta name="author" content="ismihidayati">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>KNN - Materi Data Mining</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#knn-algoritma-k-nearest-neighbor" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://ismihidayati.github.io/170441100014-Materi-Datamining" title="Materi Data Mining" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Materi Data Mining
+            </span>
+            <span class="md-header-nav__topic">
+              KNN
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://ismihidayati.com/170441100014-Materi-Data-Mining" title="Go to repository" class="md-source" data-md-source="">
+  
+  <div class="md-source__repository">
+    170441100014/Materi-Data-Mining
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="K-Means" class="md-tabs__link md-tabs__link--active">
+        K-Means
+      </a>
+    
+  </li>
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://ismihidayati.github.io/170441100014-Materi-Datamining" title="Materi Data Mining" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Materi Data Mining
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://ismihidayati.com/170441100014-Materi-Data-Mining" title="Go to repository" class="md-source" data-md-source="">
+  
+  <div class="md-source__repository">
+    170441100014/Materi-Data-Mining
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="K-Means" class="md-nav__link">
+      K-Means
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        KNN
+      </label>
+    
+    <a href="./" title="KNN" class="md-nav__link md-nav__link--active">
+      KNN
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-definisi-knn" title="1. Definisi KNN" class="md-nav__link">
+    1. Definisi KNN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tahapan-langkah-algoritma-k-nn" title="2. Tahapan Langkah Algoritma K-NN" class="md-nav__link">
+    2. Tahapan Langkah Algoritma K-NN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-kelebihan-dan-kekurangan-dari-algoritma-k-nn" title="3. Kelebihan dan Kekurangan dari Algoritma K-NN" class="md-nav__link">
+    3. Kelebihan dan Kekurangan dari Algoritma K-NN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#penerapan-k-nearest-neighbor" title="Penerapan K-Nearest-Neighbor" class="md-nav__link">
+    Penerapan K-Nearest-Neighbor
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-definisi-knn" title="1. Definisi KNN" class="md-nav__link">
+    1. Definisi KNN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tahapan-langkah-algoritma-k-nn" title="2. Tahapan Langkah Algoritma K-NN" class="md-nav__link">
+    2. Tahapan Langkah Algoritma K-NN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-kelebihan-dan-kekurangan-dari-algoritma-k-nn" title="3. Kelebihan dan Kekurangan dari Algoritma K-NN" class="md-nav__link">
+    3. Kelebihan dan Kekurangan dari Algoritma K-NN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#penerapan-k-nearest-neighbor" title="Penerapan K-Nearest-Neighbor" class="md-nav__link">
+    Penerapan K-Nearest-Neighbor
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="knn-algoritma-k-nearest-neighbor">KNN (<strong>Algoritma K-Nearest Neighbor</strong> )<a class="headerlink" href="#knn-algoritma-k-nearest-neighbor" title="Permanent link">&para;</a></h1>
+<h4 id="1-definisi-knn"><strong>1. Definisi KNN</strong><a class="headerlink" href="#1-definisi-knn" title="Permanent link">&para;</a></h4>
+<p><strong>Algoritma K-Nearest Neighbor (K-NN)</strong> adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran  data yang sudah terklasifikasikan sebelumya. Termasuk dalam <strong>supervised learning</strong>, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam <strong>K-NN</strong>.</p>
+<h4 id="2-tahapan-langkah-algoritma-k-nn"><strong>2. Tahapan Langkah Algoritma K-NN</strong><a class="headerlink" href="#2-tahapan-langkah-algoritma-k-nn" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Menentukan parameter k (jumlah tetangga paling dekat).</li>
+<li>Menghitung kuadrat jarak eucliden objek terhadap data training yang diberikan.</li>
+<li>Mengurutkan hasil no 2 secara <em>ascending</em> (berurutan dari nilai tinggi ke rendah)</li>
+<li>Mengumpulkan kategori Y (Klasifikasi nearest neighbor berdasarkan nilai k)</li>
+<li>Dengan menggunakan kategori nearest neighbor yang paling mayoritas maka dapat dipredisikan kategori objek.</li>
+</ol>
+<h4 id="3-kelebihan-dan-kekurangan-dari-algoritma-k-nn"><strong>3. Kelebihan dan Kekurangan dari Algoritma K-NN</strong><a class="headerlink" href="#3-kelebihan-dan-kekurangan-dari-algoritma-k-nn" title="Permanent link">&para;</a></h4>
+<p><strong>Kelebihan</strong></p>
+<ul>
+<li>Sangat nonlinear</li>
+<li>kNN merupakan salah satu algoritma (model) pembelajaran mesin yang bersifat nonparametrik. Pembahasan mengenai <strong>model parametrik</strong> dan model <strong>nonparametrik</strong> bisa menjadi artikel sendiri, namun secara singkat, definisi model nonparametrik adalah model yang tidak mengasumsikan apa-apa mengenai distribusi instance di dalam dataset. Model nonparametrik biasanya lebih sulit diinterpretasikan, namun salah satu kelebihannya adalah garis keputusan kelas yang dihasilkan model tersebut bisa jadi sangat fleksibel dan nonlinear.</li>
+<li>Mudah dipahami dan diimplementasikan</li>
+<li>Dari paparan yang diberikan dan penjelasan cara menghitung jarak dalam artikel ini, cukup jelas bahwa algoritma kNN mudah dipahami dan juga mudah dimplementasikan. Untuk mengklasifikasi instance x menggunakan kNN, kita cukup mendefinisikan fungsi untuk menghitung jarak antar-instance, menghitung jarak x dengan semua instance lainnya berdasarkan fungsi tersebut, dan menentukan kelas x sebagai kelas yang paling banyak muncul dalam k instance terdekat.</li>
+</ul>
+<p><strong>Kekurangan</strong></p>
+<ul>
+<li>
+<p><strong>Perlu menunjukkan parameter K (jumlah tetangga terdekat)</strong></p>
+</li>
+<li>
+<p>Tidak menangani nilai hilang (missing value) secara implisit</p>
+</li>
+<li>
+<p>Jika terdapat nilai hilang pada satu atau lebih variabel dari suatu instance, perhitungan jarak instance tersebut dengan instance lainnya menjadi tidak terdefinisi. Bagaimana coba, menghitung jarak dalam ruang 3-dimensi jika salah satu dimensi hilang? Karenanya, sebelum menerapkan kNN kerap dilakukan <strong>imputasi</strong> untuk mengisi nilai-nilai hilang yang ada pada dataset. Contoh teknik imputasi yang paling umum adalah mengisi nilai hilang pada suatu variabel dengan nilai rata-rata variabel tersebut (mean imputation).</p>
+</li>
+<li>
+<p>Sensitif terhadap data pencilan (outlier)</p>
+</li>
+<li>
+<p>Seperti yang telah dijelaskan Ali pada artikel sebelumnya, kNN bisa jadi sangat fleksibel jika k kecil. Fleksibilitas ini mengakibatkan kNN cenderung sensitif terhadap data pencilan, khususnya pencilan yang terletak di “tengah-tengah” kelas yang berbeda. Lebih jelasnya, perhatikan ilustrasi di bawah. Pada gambar kiri, seluruh instance bisa diklasifikasikan dengan benar ke dalam kelas biru dan jingga. Tetapi, ketika ditambahkan instance biru di antara instance jingga, beberapa instance jingga menjadi salah terklasifikasi.Perlu dipilih k yang tepat untuk mengurangi dampak data pencilan dalam kNN.</p>
+</li>
+<li>
+<p>Rentan terhadap variabel yang non-informatif</p>
+</li>
+<li>
+<p>Meskipun kita telah menstandardisasi rentang variabel, kNN tetap tidak dapat mengetahui variabel mana yang signifikan dalam klasifikasi dan mana yang tidak. </p>
+</li>
+<li>
+<p>Rentan terhadap dimensionalitas yang tinggi</p>
+</li>
+<li>
+<p>Berbagai permasalahan yang timbul dari tingginya dimensionalitas (baca: banyaknya variabel) menimpa sebagian besar algoritma pembelajaran mesin, dan kNN adalah salah satu algoritma yang paling rentan terhadap tingginya dimensionalitas. Hal ini karena semakin banyak dimensi, ruang yang bisa ditempati instance semakin besar, sehingga semakin besar pula kemungkinan bahwa nearest neighbour dari suatu instance sebetulnya sama sekali tidak “near“.</p>
+</li>
+<li>
+<p>Rentan terhadap perbedaan rentang variabel</p>
+</li>
+<li>
+<p>Dalam perhitungan jarak antar-instance, kNN menganggap semua variabel setara atau sama penting (lihat bagian penjumlahan pada rumus perhitungan jarak di atas). Jika terdapat variabel p yang memiliki rentang jauh lebih besar dibanding variabel-variabel lainnya, maka perhitungan jarak akan didominasi oleh p. Misalkan ada dua variabel, a dan b, dengan rentang variabel a 0 sampai 1.000 dan rentang variabel b 0 sampai 10. Kuadrat selisih dua nilai variabel b tidak akan lebih dari 100, sedangkan untuk variabel a kuadrat selisihnya bisa mencapai 1.000.000. Hal ini bisa mengecoh kNN sehingga kNN menganggap a tidak membawa pengaruh dalam perhitungan jarak karena rentangnya sangat besar dibanding rentang b.Ilustrasinya diberikan di bawah ini. Manakah yang merupakan nearest neighbour dari instance x? Jika dilihat dari “kacamata” komputer, nearest neighbour x bukanlah y, melainkan z, Mengapa?
+    Untuk mengatasi perbedaan rentang, biasanya dilakukan preproses berupa standardisasi rentang semua variabel sebelum menerapkan algoritma kNN. Contohnya yaitu melalui <strong>operasi centre-scale atau operasi min-max</strong>.</p>
+</li>
+<li>
+<p>Nilai komputasi yang tinggi.</p>
+</li>
+<li>
+<p>Untuk mengklasifikasi sebuah instance x, kNN harus menghitung jarak antara x dengan semua instance lain dalam dataset yang kita miliki. Dengan kata lain, kompleksitas waktu klasifikasi kNN berbanding lurus dengan jumlah instance latih. Jika dataset yang kita miliki berukuran besar (terdiri dari banyak instance dan/atau banyak variabel), proses ini bisa jadi sangat lambat. Bayangkan, jika kita punya 10.000 instance dengan masing-masing 20 variabel dan kita ingin mengklasifikasi 100 instance baru (instance uji), maka total operasi yang harus dilakukan menjadi:**(100 instance uji x 10.000 instance latih) x 20 variabel/instance x 2 operasi/variabel = 40 juta operasi**Beberapa cara pengindexan (K-D tree) dapat digunakan untuk mereduksi biaya komputasi.</p>
+</li>
+</ul>
+<p><strong>Referensi</strong></p>
+<p><a href="https://informatikalogi.com/algoritma-k-nn-k-nearest-neihgbor/">https://informatikalogi.com/algoritma-k-nn-k-nearest-neihgbor/</a></p>
+<ol>
+<li>
+<h4 id="penerapan-k-nearest-neighbor">Penerapan K-Nearest-Neighbor<a class="headerlink" href="#penerapan-k-nearest-neighbor" title="Permanent link">&para;</a></h4>
+</li>
+</ol>
+<p>Klasifikasi menggunakan Haberman's Survival Data Set
+   Ini adalah implementasi ulang algoritma K-Nearest Neighbors menggunakan Python .</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+<p>Impor data dan tambahkan ke daftar
+   [age_of_the_patient, year_of_operation, number_of_nodes_detected, survival_status] Periksa tautan kumpulan data di atas untuk detail lebih lanjut.</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dataset.data&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="n">atributes</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">atributes</span><span class="p">])</span>
+</pre></div>
+
+<p>Fungsi help untuk membantu visualisasi Juga mengembalikan informasi kunci dari kumpulan data.</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">info_dataset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="n">label1</span><span class="p">,</span> <span class="n">label2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">data_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">datum</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">label1</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label2</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Total of samples: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">data_size</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Total label 1: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">label1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Total label 2: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">label2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">label1</span><span class="p">,</span> <span class="n">label2</span><span class="p">]</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">info_dataset</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+<p>output :</p>
+<div class="codehilite"><pre><span></span>Total of samples: 306
+Total label 1: 225
+Total label 2: 81
+[306, 225, 81]
+</pre></div>
+
+<p>Tentukan persentase data train / total.</p>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">label1</span><span class="p">,</span> <span class="n">label2</span> <span class="o">=</span> <span class="n">info_dataset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+
+<p>​               Membagi data set menjadi data train dan data tes.</p>
+<div class="codehilite"><pre><span></span><span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="n">max_label1</span><span class="p">,</span> <span class="n">max_label2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">label1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">label2</span><span class="p">)</span>
+<span class="n">total_label1</span><span class="p">,</span> <span class="n">total_label2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">total_label1</span> <span class="o">+</span> <span class="n">total_label2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">max_label1</span> <span class="o">+</span> <span class="n">max_label2</span><span class="p">):</span>
+        <span class="n">train_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sample</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">total_label1</span> <span class="o">&lt;</span> <span class="n">max_label1</span><span class="p">:</span>
+            <span class="n">total_label1</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">total_label2</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">test_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+
+<p>​           Tentukan fungsi untuk menghitung jarak euclidean antara dua titik :</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">euclidian_dist</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+    <span class="n">dim</span><span class="p">,</span> <span class="n">sum_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="p">),</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">sum_</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">-</span> <span class="n">p2</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_</span><span class="p">)</span>
+</pre></div>
+
+<p>​               Hitung jarak antara sampel yang diberikan dan yang lainnya dalam data train, mengurutkannya dan mendapatkan tetangga K terdekat. Kemudian ia menghitung label yang dilakukan berulang, dan mengembalikannya.</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">knn</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">new_sample</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
+    <span class="n">dists</span><span class="p">,</span> <span class="n">train_size</span> <span class="o">=</span> <span class="p">{},</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">train_size</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">euclidian_dist</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">new_sample</span><span class="p">)</span>
+        <span class="n">dists</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+
+    <span class="n">k_neighbors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">dists</span><span class="o">.</span><span class="n">get</span><span class="p">)[:</span><span class="n">K</span><span class="p">]</span>
+
+    <span class="n">qty_label1</span><span class="p">,</span> <span class="n">qty_label2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">k_neighbors</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">train_set</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">qty_label1</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">qty_label2</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">qty_label1</span> <span class="o">&gt;</span> <span class="n">qty_label2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+</pre></div>
+
+<p>​       Contohnya :</p>
+<div class="codehilite"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">test_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">knn</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">12</span><span class="p">))</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>[55, 58, 0, 1]
+1
+</pre></div>
+
+<p>​       Menghitung prediksi yang benar dari data set dengan K yang diberikan</p>
+<div class="codehilite"><pre><span></span><span class="n">correct</span><span class="p">,</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span>
+<span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">test_set</span><span class="p">:</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">knn</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sample</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">label</span><span class="p">:</span>
+        <span class="n">correct</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Train set size: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Test set size: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_set</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Correct predicitons: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">correct</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%.2f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)))</span>
+</pre></div>
+
+<p>​           Hasil Output :</p>
+<div class="codehilite"><pre><span></span>Train set size: 183
+Test set size: 123
+Correct predicitons: 93
+Accuracy: 50.82%
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="K-Means" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                K-Means
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019 ismihidayati
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://ismihidayati.com/170441100014" class="md-footer-social__link fa fa-ismihidayati"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8c0d971c.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
